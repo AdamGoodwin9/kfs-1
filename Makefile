@@ -60,6 +60,7 @@ clean:
 fclean: clean
 	$(RM) -r target
 	$(RM) -r $(BIN_DIR)
+	$(RM) -r isodir
 
 re: fclean all
 
