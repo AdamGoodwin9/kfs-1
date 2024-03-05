@@ -59,8 +59,7 @@ clean:
 	$(RM) -r target
 
 fclean: clean
-	$(RM) $(BIN_DIR)/$(BIN)
-	$(RM) $(BIN_DIR)/kernel.iso
+	$(RM) -r $(BIN_DIR)
 
 re: fclean all
 
