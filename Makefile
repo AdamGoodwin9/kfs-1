@@ -56,9 +56,9 @@ run-iso: make-iso
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-	$(RM) -r target
 
 fclean: clean
+	$(RM) -r target
 	$(RM) -r $(BIN_DIR)
 
 re: fclean all
