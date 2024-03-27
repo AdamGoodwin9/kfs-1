@@ -13,8 +13,7 @@ static HELLO: &[u8] = b"Hello World!";
 
 #[no_mangle] // don't mangle the name of this function (changing the name)
 pub extern "C" fn kernel_main() -> ! {
-    // this function is the entry point, since the linker looks for a function
-    // named `_start` by default
+    // this function is the entry point
     let vga_buffer = 0xb8000 as *mut u8;
 
     for (i, &byte) in HELLO.iter().enumerate() {

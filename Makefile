@@ -46,13 +46,13 @@ make-iso: $(BIN_DIR)/$(BIN)
 	@mkdir -p isodir/boot/grub
 	@cp $< isodir/boot/myos.bin
 	@cp $(SRC_DIR)/grub.cfg isodir/boot/grub/grub.cfg
-	grub-mkrescue -o $(BIN_DIR)/kernel.iso isodir
+	grub-mkrescue -o $(BIN_DIR)/$(ISO) isodir
 
 run-bin: $(BIN_DIR)/$(BIN)
 	qemu-system-i386 -kernel $<
 
 run-iso: make-iso
-	qemu-system-i386 -cdrom $(BIN_DIR)/kernel.iso
+	qemu-system-i386 -cdrom $(BIN_DIR)/$(ISO)
 
 docker:
 	docker build -t kfs .
