@@ -12,12 +12,12 @@ BIN_DIR := bin
 # Flags, Libraries, Includes
 ASFLAGS := --32
 LDFLAGS := -m elf_i386 -T $(SRC_DIR)/link.ld
-LIBS := 
 
 # Sources, Objects, Binary
 SRCS_ASM := $(wildcard $(SRC_DIR)/*.s)
 OBJS_ASM := $(patsubst $(SRC_DIR)/%.s, $(OBJ_DIR)/%.o, $(SRCS_ASM))
 BIN := kernel.bin
+ISO := kernel.iso
 
 # Rust static library
 TARGET_TRIPLE := i386-unknown-none
@@ -53,6 +53,10 @@ run-bin: $(BIN_DIR)/$(BIN)
 
 run-iso: make-iso
 	qemu-system-i386 -cdrom $(BIN_DIR)/kernel.iso
+
+docker:
+	docker build -t kfs .
+	docker run -v $(PWD):/home/kfs -it kfs
 
 clean:
 	$(RM) -r $(OBJ_DIR)

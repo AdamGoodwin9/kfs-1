@@ -1,12 +1,25 @@
-FROM alpine:latest
+FROM debian:bullseye-slim
 
 WORKDIR /home/kfs
 
 # base packages
-RUN apk update && apk add --no-cache curl build-base nasm grub xorriso rust cargo
+RUN apt update && apt install build-essential curl grub-pc xorriso -y
+
+# Create a regular user 'user'
+RUN useradd -m user && \
+    echo "user:user" | chpasswd && \
+    usermod -aG sudo user
+
+# Change ownership of the workdir
+RUN chown -R user:user /home/kfs
+
+# Switch to the user
+USER user
 
 # rust
-RUN rustup default nightly && \
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    . "$HOME/.cargo/env" && \
+    rustup toolchain install nightly-x86_64-unknown-linux-gnu && \
     rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["/bin/bash"]
