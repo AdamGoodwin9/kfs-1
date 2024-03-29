@@ -16,6 +16,17 @@ fn panic(info: &PanicInfo) -> ! {
 pub extern "C" fn kernel_main()
 {
     // this function is the entry point
-    println!("Hello World{}", "!");
+    println!("Hello KFS-1{}", "!");
+    println!("
+     /$$   /$$  /$$$$$$ 
+    | $$  | $$ /$$__  $$
+    | $$  | $$|__/  \\ $$
+    | $$$$$$$$  /$$$$$$/
+    |_____  $$ /$$____/ 
+          | $$| $$      
+          | $$| $$$$$$$$
+          |__/|________/
+                        ");
+    print!("Made by:\nAssxios and Goody");
     loop {}
 }

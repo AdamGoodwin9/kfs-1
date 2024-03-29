@@ -2,7 +2,7 @@ FROM debian:bullseye-slim
 
 WORKDIR /home/kfs
 
-# base packages
+# Base packages
 RUN apt update && apt install build-essential curl grub-pc xorriso -y
 
 # Create a regular user 'user'
@@ -16,7 +16,7 @@ RUN chown -R user:user /home/kfs
 # Switch to the user
 USER user
 
-# rust
+# Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     . "$HOME/.cargo/env" && \
     rustup toolchain install nightly-x86_64-unknown-linux-gnu && \
