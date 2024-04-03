@@ -44,7 +44,7 @@ check-multiboot: $(BIN_DIR)/$(BIN)
 
 make-iso: $(BIN_DIR)/$(BIN)
 	@mkdir -p isodir/boot/grub
-	@cp $< isodir/boot/myos.bin
+	@cp $< isodir/boot/kfs-1.bin
 	@cp $(SRC_DIR)/grub.cfg isodir/boot/grub/grub.cfg
 	grub-mkrescue -o $(BIN_DIR)/$(ISO) isodir
 

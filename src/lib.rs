@@ -27,6 +27,6 @@ pub extern "C" fn kernel_main()
           | $$| $$$$$$$$
           |__/|________/
                         ");
-    print!("Made by:\nAssxios and Goody");
+    print!("Made by:\nAssxios and Goody\n");
     loop {}
 }
